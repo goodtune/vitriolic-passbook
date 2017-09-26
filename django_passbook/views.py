@@ -39,7 +39,7 @@ def registrations(request, device_library_id, pass_type_id):
             FORMAT), 'serialNumbers': serial_numbers}
         return HttpResponse(
             json.dumps(response_data),
-            mimetype="application/json"
+            content_type="application/json"
         )
     else:
         return HttpResponse(status=204)
