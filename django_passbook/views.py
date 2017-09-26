@@ -64,7 +64,7 @@ def register_pass(request, device_library_id, pass_type_id, serial_number):
     if request.method == 'POST':
         if registration:
             return HttpResponse(status=200)
-        body = json.loads(request.body)
+        body = json.loads(request.text)
         new_registration = Registration(
             device_library_identifier=device_library_id,
             push_token=body['pushToken'],
@@ -109,7 +109,7 @@ def log(request):
     """
     Logs messages from devices
     """
-    b = json.loads(request.body)
+    b = json.loads(request.text)
     for m in b['logs']:
         Log(message=m).save()
     return HttpResponse(status=200)
